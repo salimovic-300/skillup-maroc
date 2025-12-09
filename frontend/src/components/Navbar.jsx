@@ -248,6 +248,14 @@ export default function Navbar() {
                   >
                     S'inscrire
                   </Link>
+                  <Link
+  to="/mes-cours"
+  onClick={() => setUserMenuOpen(false)}
+  className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+>
+  <span>📚</span>
+  <span>Mes cours</span>
+</Link>
                 </>
               )}
             </div>

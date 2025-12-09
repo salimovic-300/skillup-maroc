@@ -12,6 +12,8 @@ import Footer from './components/Footer';
 import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentCancel from './pages/PaymentCancel';
 import Learn from './pages/Learn';
+import MesCours from './pages/MesCours';
+
 
 
 function App() {
@@ -40,6 +42,10 @@ function App() {
            path="/learn/:courseSlug" 
             element={isAuthenticated ? <Learn /> : <Navigate to="/connexion" />} 
             />
+            <Route 
+  path="/mes-cours" 
+  element={isAuthenticated ? <MesCours /> : <Navigate to="/connexion" />} 
+/>
         </Routes>
       </main>
 
