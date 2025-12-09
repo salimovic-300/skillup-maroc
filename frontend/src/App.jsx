@@ -11,6 +11,8 @@ import Navbar from './components/Navbar';  // ← Assure-toi de ça
 import Footer from './components/Footer';
 import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentCancel from './pages/PaymentCancel';
+import Learn from './pages/Learn';
+
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -33,7 +35,11 @@ function App() {
             } 
           />
           <Route path="/payment/success" element={<PaymentSuccess />} />
-<Route path="/payment/cancel" element={<PaymentCancel />} />  
+          <Route path="/payment/cancel" element={<PaymentCancel />} />  
+          <Route 
+           path="/learn/:courseSlug" 
+            element={isAuthenticated ? <Learn /> : <Navigate to="/connexion" />} 
+            />
         </Routes>
       </main>
 
