@@ -13,6 +13,10 @@ import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentCancel from './pages/PaymentCancel';
 import Learn from './pages/Learn';
 import MesCours from './pages/MesCours';
+import Freelance from './pages/Freelance';
+import FreelanceDetail from './pages/FreelanceDetail';
+
+
 
 
 
@@ -43,9 +47,13 @@ function App() {
             element={isAuthenticated ? <Learn /> : <Navigate to="/connexion" />} 
             />
             <Route 
-  path="/mes-cours" 
-  element={isAuthenticated ? <MesCours /> : <Navigate to="/connexion" />} 
-/>
+              path="/mes-cours" 
+              element={isAuthenticated ? <MesCours /> : <Navigate to="/connexion" />} 
+              />
+              <Route path="/freelance" element={<Freelance />} />
+              <Route path="/freelance/:projectId" element={<FreelanceDetail />} />
+
+
         </Routes>
       </main>
 

@@ -11,7 +11,7 @@ export default function Footer() {
           La première plateforme marocaine complète : Formation + Certification + Freelancing
         </p>
         <p className="text-gray-500 text-sm mt-4">
-          © 2024 SkillUp Maroc. Tous droits réservés. 🇲🇦
+          © 2025 SkillUp Maroc. Tous droits réservés. 🇲🇦
         </p>
       </div>
     </footer>
