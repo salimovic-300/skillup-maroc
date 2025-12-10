@@ -2,14 +2,12 @@ FROM node:18-alpine
 
 WORKDIR /APP
 
-# COPIE 1 : Copie uniquement le package.json 
-COPY package.json . / 
-
+# Correction : Utiliser le chemin relatif car la racine est maintenant 'backend'
+COPY package.json . /
 RUN npm install
 
-# COPIE 2 : Copie tout le reste du répertoire /backend
-COPY . / 
-
+# Correction : Copie tout le contenu du répertoire 'backend' dans /APP
+COPY . /
 EXPOSE 3000
 
 CMD ["npm", "start"]
