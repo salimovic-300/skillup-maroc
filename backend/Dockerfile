@@ -1,13 +1,15 @@
 FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /APP
 
-COPY package*.json ./
+# COPIE 1 : Copie uniquement le package.json 
+COPY package.json . / 
 
 RUN npm install
 
-COPY . .
+# COPIE 2 : Copie tout le reste du répertoire /backend
+COPY . / 
 
-EXPOSE 10000
+EXPOSE 3000
 
 CMD ["npm", "start"]
