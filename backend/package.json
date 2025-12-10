@@ -4,11 +4,13 @@
   "description": "API Backend pour SkillUp Maroc - Plateforme EdTech",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
     "dev": "nodemon server.js",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "npm install"
   },
+  
   "keywords": [
     "edtech",
     "morocco",
@@ -42,6 +44,6 @@
     "nodemon": "^3.0.2"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   }
 }
