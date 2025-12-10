@@ -2,12 +2,12 @@ FROM node:18-alpine
 
 WORKDIR /APP
 
-# Le chemin est maintenant relatif à 'backend'
+# Correction : Le contexte est maintenant 'backend'
 COPY package.json . / 
 
 RUN npm install
 
-# Copie tout le contenu du répertoire 'backend' dans /APP
+# Correction : Le contenu de 'backend' est copié
 COPY . / 
 
 EXPOSE 3000
