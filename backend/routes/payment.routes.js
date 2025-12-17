@@ -97,7 +97,7 @@ router.post('/create-checkout-session', protect, async (req, res) => {
           product_data: {
             name: course.title,
             description: course.shortDescription || course.description.substring(0, 200),
-            images: course.thumbnail ? [`${process.env.FRONTEND_URL}${course.thumbnail}`] : []
+            images: []
           },
           unit_amount: Math.round(finalPrice * 100) // Stripe utilise les centimes
         },
