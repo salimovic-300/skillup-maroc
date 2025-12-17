@@ -12,10 +12,9 @@ connectDB();
 app.use(helmet());
 app.use(cors({
   origin: [
-    'http://localhost:3000',
-    'http://localhost:5173',
-    process.env.FRONTEND_URL
-  ].filter(Boolean),
+    "https://skillup-maroc-front-oi5xnuwtm-elghazouisalim30-9554s-projects.vercel.app",
+    "http://localhost:3000"
+  ],
   credentials: true
 }));
 
