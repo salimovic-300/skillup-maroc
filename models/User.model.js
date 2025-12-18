@@ -172,7 +172,7 @@ UserSchema.methods.incLoginAttempts = async function() {
     await this.updateOne({
       $set: { loginAttempts: 1 },
       $unset: { lockUntil: 1 }
-    });
+    });x
     return;
   }
   

@@ -33,8 +33,8 @@ const registerValidation = [
     .notEmpty().withMessage('Nom requis')
     .isLength({ max: 50 }).withMessage('Maximum 50 caractères'),
   body('dataConsent')
-    .isBoolean().withMessage('Consentement requis')
-    .equals('true').withMessage('Vous devez accepter les conditions')
+    .custom((value) => value === true || value === 'true')
+    .withMessage('Vous devez accepter les conditions')
 ];
 
 const loginValidation = [
@@ -42,29 +42,19 @@ const loginValidation = [
   body('password').notEmpty().withMessage('Mot de passe requis')
 ];
 
-const passwordValidation = [
-  body('password')
-    .isLength({ min: 8 }).withMessage('Minimum 8 caractères')
-    .matches(/\d/).withMessage('Doit contenir un chiffre')
-    .matches(/[A-Z]/).withMessage('Doit contenir une majuscule')
-];
-
 // Routes publiques
 router.post('/register', registerValidation, validate, register);
 router.post('/login', loginValidation, validate, login);
 router.get('/verify-email/:token', verifyEmail);
 router.post('/forgot-password', body('email').isEmail(), validate, forgotPassword);
-router.put('/reset-password/:token', passwordValidation, validate, resetPassword);
+router.put('/reset-password/:token', validate, resetPassword);
 
 // Routes protégées
-router.use(protect); // Toutes les routes suivantes nécessitent une authentification
+router.use(protect);
 
 router.post('/logout', logout);
 router.get('/me', getMe);
-router.put('/update-password', [
-  body('currentPassword').notEmpty().withMessage('Mot de passe actuel requis'),
-  ...passwordValidation.map(v => v.withMessage(v._context?.message || ''))
-], validate, updatePassword);
+router.put('/update-password', validate, updatePassword);
 router.post('/resend-verification', resendVerification);
 
 module.exports = router;
