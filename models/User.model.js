@@ -148,17 +148,17 @@ UserSchema.methods.getEmailVerificationToken = function() {
 };
 
 // Générer token reset password
-UserSchema.methods.getResetPasswordToken = function() {
-  const token = crypto.randomBytes(32).toString('hex');
+UserSchema.methods.getSignedJwtToken = function() {
+  console.log('JWT_EXPIRE value:', process.env.JWT_EXPIRE); // Debug
+  console.log('JWT_SECRET set:', !!process.env.JWT_SECRET); // Debug
   
-  this.resetPasswordToken = crypto
-    .createHash('sha256')
-    .update(token)
-    .digest('hex');
-  
-  this.resetPasswordExpire = Date.now() + 60 * 60 * 1000; // 1h
-  
-  return token;
+  return jwt.sign(
+    { id: this._id, role: this.role },
+    process.env.JWT_SECRET || 'temporary_dev_secret_123',
+    { 
+      expiresIn: process.env.JWT_EXPIRE || "7d" // Valeur par défaut sûre
+    }
+  );
 };
 
 // Vérifier si compte bloqué
