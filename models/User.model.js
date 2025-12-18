@@ -125,13 +125,14 @@ UserSchema.methods.matchPassword = async function(enteredPassword) {
 
 // Générer JWT
 UserSchema.methods.getSignedJwtToken = function() {
-  return jwt.sign(
-    { id: this._id, role: this.role },
-    process.env.JWT_SECRET,
-    { expiresIn: process.env.JWT_EXPIRE }
-  );
+    return jwt.sign(
+        { id: this._id, role: this.role },
+        process.env.JWT_SECRET || 'fallback_secret_change_this',
+        { 
+            expiresIn: process.env.JWT_EXPIRE || "30d" // Valeur par défaut
+        }
+    );
 };
-
 // Générer token de vérification email
 UserSchema.methods.getEmailVerificationToken = function() {
   const token = crypto.randomBytes(32).toString('hex');
